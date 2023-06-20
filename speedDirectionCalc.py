@@ -14,16 +14,14 @@ Assumptions:
 
 """
 
-from windSpeedRequest import requestWeatherData
-from relWindSpeed import relWindSpeed
-from saveData import saveDataCSV
-from app import index
+
+
 
 
 def speedDirectionCalculator(fileGPX):
     import gpxpy
     import gpxpy.gpx
-    import math
+    
     
 
     gpx_file = open(fileGPX, 'r')
@@ -46,7 +44,7 @@ def speedDirectionCalculator(fileGPX):
 
     bearings, speed = bearingDistance(ex_data) #bearings is in deg and speed in m/s
 
-    return (bearings, speed)
+    return (bearings, speed, ex_data)
     
     
 
@@ -112,12 +110,6 @@ def bearingDistance(ex_data):
 
 
 
-usrBearing, usrSpeed = speedDirectionCalculator('filesGPX/2023-06-17_1171709424_Cycling.gpx')
-windSpeeds, windDirs = requestWeatherData(ex_data)
-
-headWind, windResDir, windResSpeed = relWindSpeed(usrSpeed, usrBearing, windSpeeds, windDirs)
-saveDataCSV(ex_data, headWind, usrBearing, usrSpeed, windResSpeed, windResDir)
-index(ex_data, headWind)
 
 
 
