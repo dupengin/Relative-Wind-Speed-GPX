@@ -21,11 +21,14 @@ def saveDataCSV(ex_data, headWind, usrDir, usrSpeed, resWindSpeed, ResWindDir ):
 
     write_lists_to_csv(filename, headers, longitude, latitude, headWind, usrDir, usrSpeed, resWindSpeed, ResWindDir)
 
+def saveTestDataCSV(windSpeed, WindDir ):
+    
+    
+    filename = 'test_data_0.csv'
+    headers = ['Wind Speed', 'Wind Direction']
+
+    write_lists_to_csv(filename, headers, windSpeed, WindDir)
 
 
-# Example lists
-
-
-# Example usage
 
 

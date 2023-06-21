@@ -28,8 +28,9 @@ def index():
     return render_template('heatmap.html', map_heatmap=map_heatmap._repr_html_())
 
 def get_data():
+    testMode = True
     usrBearing, usrSpeed, ex_data = speedDirectionCalculator('filesGPX/2023-06-17_1171709424_Cycling.gpx')
-    windSpeeds, windDirs = requestWeatherData(ex_data)
+    windSpeeds, windDirs = requestWeatherData(ex_data, testMode)
 
     headWind, windResDir, windResSpeed = relWindSpeed(usrSpeed, usrBearing, windSpeeds, windDirs)
     saveDataCSV(ex_data, headWind, usrBearing, usrSpeed, windResSpeed, windResDir)
