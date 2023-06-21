@@ -25,8 +25,19 @@ def requestWeatherData(ex_data):
 
     endpoint = f'https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/{longitude},{latitude}/{date}?key={apiKey}'
 
-    response = requests.get(endpoint, timeout = 20)
-    dataWeather = response.json()
+    try:
+        response = requests.get(endpoint, timeout=20)
+        response.raise_for_status()  # Raise an exception if the request was not successful (status code >= 400)
+        dataWeather = response.json()
+    except requests.exceptions.HTTPError as err:
+        if response.status_code == 429:
+            print("Too Many Requests. Please try again later.")
+        else:
+            print(f"HTTP Error: {response.status_code} - {err}")
+    except requests.exceptions.RequestException as err:
+        print(f"An error occurred during the request: {err}")
+
+    
 
 
 

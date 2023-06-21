@@ -6,6 +6,7 @@ from windSpeedRequest import requestWeatherData
 from relWindSpeed import relWindSpeed
 from saveData import saveDataCSV
 from speedDirectionCalc import speedDirectionCalculator
+import math 
 
 
 
@@ -46,14 +47,16 @@ def generate_line(ex_data, headWind):
     map_line = folium.Map(location=[lat_c, lon_c], zoom_start=10)
 
     # Create a colormap for the line color based on variable x
-    colormap = cm.LinearColormap(colors=['blue', 'red'], vmin=0, vmax=max(headWind))
-
+    colormap = cm.LinearColormap(colors=['blue', 'red'], vmin=min(headWind), vmax=max(headWind))
+    coord=[]
     # Add lines to the map
-    for i in range (len(ex_data)-1):
-        coord = [ex_data[i]["lat"], ex_data[i]["longit"]]
+    for i in range (int(len(ex_data)-1)):
+        t = (ex_data[i]["lat"], ex_data[i]["longit"])
+        coord.append(t)
         
         color = colormap(headWind[i])
-    folium.PolyLine(locations = [coord],color = 'red').add_to(map_line)
+        folium.PolyLine(locations = [coord],color = color).add_to(map_line)
+
 
     # Add the colormap to the map
     colormap.caption = 'HeadWind'
