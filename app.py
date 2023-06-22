@@ -45,7 +45,7 @@ from speedDirectionCalc import speedDirectionCalculator
 from movingPointAve import movingPointAve
 
 
-
+ 
 app = Flask(__name__)
 
 # 
