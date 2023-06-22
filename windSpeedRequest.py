@@ -13,7 +13,7 @@ def requestWeatherData(ex_data, testMode):
     #Test mode uses a pre-saved csv for wind speed and direction, this is to avoid using api requests as these are capped per day
     if (testMode):
         fileName = 'test_data_0.csv'
-        print('test mode')
+        print('test mode') #terminal comment to confirm that test mode is set
 
         with open (fileName) as f:
             reader = csv.reader(f)

@@ -8,7 +8,7 @@ Methodology:
     This direction will then be the direction at time in row i
     The time difference between i + 1 and i will be used with the distance to give a resulting speed 
 - store the direction and speed in a new array
-
+- informaiton and code from following webpage was used to aid the calculation of distance and bearing between coordinates (https://github.com/TechnicalVillager/distance-bearing-calculation/blob/master/distance_bearing.py)
 Assumptions:
 - it is assumed that there is no acceleration between each long and latitude coordinate, they are traveling at a constant speed over this short distance
 
@@ -17,20 +17,21 @@ Assumptions:
 
 
 
-
+#Function below extracts the required data from the GPX file, then calls another function (which is defined below) to calculate speed and bearing
 def speedDirectionCalculator(fileGPX):
     import gpxpy
     import gpxpy.gpx
     
     
-
+    #open gpx file
     gpx_file = open(fileGPX, 'r')
-    gpx_data = gpxpy.parse(gpx_file)
+    gpx_data = gpxpy.parse(gpx_file) #Parsing possible due to use of https://pypi.org/project/gpxpy/
 
     #create 2D array to store extracted data
     global ex_data
     ex_data = []
-    
+
+    #for loop used to extract required data from GPX file
     for track in gpx_data.tracks:
         for segment in track.segments:
             for point in segment.points:
@@ -48,19 +49,27 @@ def speedDirectionCalculator(fileGPX):
     
     
 
+#funcrion below calcualtes the users speed and bearing between each data point, i.e each coordinate
+#Formulas from https://github.com/TechnicalVillager/distance-bearing-calculation/blob/master/distance_bearing.py used for distance and bearings 
 
 def bearingDistance(ex_data):
     import math
-    bearings=[]
-    dist=[]
-    diffTimes = []
-    speed = []
+    bearings=[] #new array for storing bearing data
+    dist=[] #new array for storing distance data
+    diffTimes = [] #array for storing time diffence when user reaches each coordinate
+    speed = [] #array for storing speed
 
-    for i in range (len(ex_data)-1):
+    
+
+    for i in range (len(ex_data)-1): 
+
+        #each coordinate needs to be converted to radians
         lat1 = math.radians(ex_data[i]['lat'])
         lat2 = math.radians(ex_data[i+1]['lat'])
         long1 = math.radians(ex_data[i]['longit'])
         long2 = math.radians(ex_data[i+1]['longit'])
+
+        
         time1 = ex_data[i]['time']
         time2 = ex_data[i+1]['time']
 
@@ -114,28 +123,3 @@ def bearingDistance(ex_data):
 
 
 
-"""
-Following was copied from https://github.com/TechnicalVillager/distance-bearing-calculation/blob/master/distance_bearing.py
-
-
-import math
-R = 6371e3 #Radius of earth in metres
-def distance_bearing(homeLattitude, homeLongitude, destinationLattitude, destinationLongitude):
-	rlat1 = homeLattitude * (math.pi/180) 
-	rlat2 = destinationLattitude * (math.pi/180) 
-	rlon1 = homeLongitude * (math.pi/180) 
-	rlon2 = destinationLongitude * (math.pi/180) 
-	dlat = (destinationLattitude - homeLattitude) * (math.pi/180)
-	dlon = (destinationLongitude - homeLongitude) * (math.pi/180)
-	#haversine formula to find distance
-	a = (math.sin(dlat/2) * math.sin(dlat/2)) + (math.cos(rlat1) * math.cos(rlat2) * (math.sin(dlon/2) * math.sin(dlon/2)))
-	c = 2 * math.atan2(math.sqrt(a), math.sqrt(1-a))
-	distance = R * c #distance in metres
-	#formula for bearing
-	y = math.sin(rlon2 - rlon1) * math.cos(rlat2)
-	x = math.cos(rlat1) * math.sin(rlat2) - math.sin(rlat1) * math.cos(rlat2) * math.cos(rlon2 - rlon1)
-	bearing = math.atan2(y, x) #bearing in radians
-	bearingDegrees = bearing * (180/math.pi)
-	out = [distance, bearingDegrees]
-	return out
-"""
