@@ -11,7 +11,7 @@ def write_lists_to_csv(filename, headers, *lists):
         writer = csv.writer(csvfile)
         writer.writerow(headers)
         for row in zip(*lists):
-            writer.writerow(row)
+            writer.writerow(row) 
 
 #Creation of function to save the data calculated in other functions as a csv, uses the CSV writer defined above
 #Input = data extracted from csv and the data calcualted in other funcitons
