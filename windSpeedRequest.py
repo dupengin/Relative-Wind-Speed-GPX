@@ -49,7 +49,7 @@ def requestWeatherData(ex_data, testMode):
             if response.status_code == 429:
                 print("Too Many Requests. Please try again later.") 
             else:
-                print(f"HTTP Error: {response.status_code} - {err}")
+                print(f"HTTP Error: {response.status_code} - {err}") 
         except requests.exceptions.RequestException as err:
             print(f"An error occurred during the request: {err}")
 
