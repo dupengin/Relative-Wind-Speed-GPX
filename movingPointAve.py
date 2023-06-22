@@ -32,4 +32,4 @@ def movingPointAve(ex_data, headWind):
     for i in range((k/2)-1, len(ex_data) - ((k/2)-1), k):
         new_ex_data.append(ex_data[i])
     
-    return (new_ex_data, new_headWind)
+    return (new_ex_data, new_headWind) 

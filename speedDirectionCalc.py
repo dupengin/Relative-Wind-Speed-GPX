@@ -67,7 +67,7 @@ def bearingDistance(ex_data):
         lat1 = math.radians(ex_data[i]['lat'])
         lat2 = math.radians(ex_data[i+1]['lat'])
         long1 = math.radians(ex_data[i]['longit'])
-        long2 = math.radians(ex_data[i+1]['longit'])
+        long2 = math.radians(ex_data[i+1]['longit']) 
 
         
         time1 = ex_data[i]['time']

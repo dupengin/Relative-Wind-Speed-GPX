@@ -35,5 +35,5 @@ def relWindSpeed(usrSpeed, usrBearing, windSpeeds, windDirs):
     
         headWind.append(windResSpeed[i] * math.cos(angleRad) )
     
-    return (headWind, windResDir, windResSpeed)
+    return (headWind, windResDir, windResSpeed) 
     

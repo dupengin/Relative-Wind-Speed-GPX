@@ -28,7 +28,7 @@ for track in gpx_data.tracks:
             ex_data.append([time, longitude, latitude])
 
 print(ex_data)
-
+ 
 
 
 #calcualte the orientstion of the bike by using the two coordinates

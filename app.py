@@ -26,7 +26,7 @@ Below is the main programme calling sub-programmes and launching flask applicati
 
 
 
-#import of various libaries and functions
+#import of various libaries and functions 
 from flask import Flask, render_template
 import folium
 import branca.colormap as cm

@@ -1,6 +1,6 @@
 """The functions below write set data to csv files"""
 
-import time
+import time 
 
 #Creation of a function to write data to csv\
 #inputs = the file name, the headers of eaxh column in the csv and the data (lists) to be written to the csv, this can include multiple lists
