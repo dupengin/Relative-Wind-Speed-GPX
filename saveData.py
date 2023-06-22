@@ -1,4 +1,4 @@
-
+import time
 
 def write_lists_to_csv(filename, headers, *lists):
     import csv
@@ -15,8 +15,8 @@ def saveDataCSV(ex_data, headWind, usrDir, usrSpeed, resWindSpeed, ResWindDir ):
     for i in range(len(ex_data)-1):
         longitude.append(ex_data[i]['longit'])
         latitude.append(ex_data[i]['lat'])
-    
-    filename = 'output.csv'
+    timestr = time.strftime("%Y%m%d-%H%M%S")
+    filename = 'output' + timestr + ".csv"
     headers = ['longitude', 'latitude', 'Head Wind', 'User Direction', 'User Speed', 'Resultant Wind Speed', 'Resultant Wind Direction']
 
     write_lists_to_csv(filename, headers, longitude, latitude, headWind, usrDir, usrSpeed, resWindSpeed, ResWindDir)

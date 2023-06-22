@@ -1,12 +1,6 @@
-#d = [{"a" : 1, "b" : 2, "c":3}, {"a" : 1, "b" : 2 ,"c":3}, {"a" : 1, "b" : 2 ,"c":3}] 
+headWind = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3]
 
-#print(int(len(d)/2))
-
-import csv
-
-fileName = 'test_data_0.csv'
-
-with open (fileName) as f:
-    reader = csv.reader(f)
-    for row in range(1,len(reader)):
-        print( row)
+for i in range (4, len(headWind), 10):
+    x = i + 10
+    s = sum(headWind[i:x])
+    print (s)
