@@ -14,7 +14,7 @@ def relWindSpeed(usrSpeed, usrBearing, windSpeeds, windDirs):
         # calculate the wind users velocity components in the x & y direciton
         usrVel_X = usrSpeed[i] * math.cos(usrBearing[i])
         usrVel_Y = usrSpeed[i] * math.sin(usrBearing[i])
-        windVel_X = windSpeeds[i] * math.cos(windDirs[i])
+        windVel_X = windSpeeds[i] * math.cos(windDirs[i]) 
         windVel_Y = windSpeeds[i] * math.cos(windDirs[i])
 
         # calcule the resultant wind speed
