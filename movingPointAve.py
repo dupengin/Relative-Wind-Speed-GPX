@@ -29,7 +29,7 @@ def movingPointAve(ex_data, headWind):
     new_ex_data = [] #new array to store the reduced number of data points
 
     #for loop to extract the ex_data values at the mid point of the averaged wind speed data
-    for i in range((k/2)-1, len(ex_data) - ((k/2)-1), k):
+    for i in range(int(k/2)-1, len(ex_data) - (int(k/2)-1), k):
         new_ex_data.append(ex_data[i])
     
     return (new_ex_data, new_headWind)  
